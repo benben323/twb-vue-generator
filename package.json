@@ -29,6 +29,8 @@
   },
   "homepage": "https://github.com/benben323/twb-vue-generator#readme",
   "dependencies": {
-    "commander": "^2.12.2"
+    "commander": "^2.12.2",
+    "mkdirp": "^0.5.1",
+    "sorted-object": "^2.0.1"
   }
 }
