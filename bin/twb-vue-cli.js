@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var ejs = require('ejs')
 var fs = require('fs')
 var mkdirp = require('mkdirp')
 var sortedObject = require('sorted-object')
@@ -105,8 +106,35 @@ function createApplication (name, path) {
     console.log()
   }
 
+  var envConfig = loadTemplate('env_config.js')
+
+  envConfig.locals.appname = name
+
   mkdir(path, function () {
-    
+    mkdir(path + '/build', function () {
+
+    })
+
+    mkdir(path + '/middleware',function () {
+
+    })
+
+    mkdir(path + '/proxy', function () {
+
+    })
+
+    mkdir(path + '/src', function() {
+
+    })
+
+    write(path + '/package.json', JSON.stringify(pkg, null, 2) + '\n')
+    write(path + '/apps.js', app.render())
+
+    if (program.git) {
+      copyTemplate('gitignore', path + '/.gitignore')
+    }
+
+    complete()
   })
 }
 
@@ -170,6 +198,24 @@ function createAppName (pathName) {
     .replace(/[^A-Za-z0-9.()!~*'-]+/g, '-')
     .replace(/^[-_.]+|-+$/g, '')
     .toLowerCase()
+}
+
+/**
+ * Load template file.
+ */
+
+function loadTemplate (name) {
+  var contents = fs.readFileSync(path.join(__dirname, '..', 'templates', (name + '.ejs')), 'utf-8')
+  var locals = Object.create(null)
+
+  function render () {
+    return ejs.render(contents, locals)
+  }
+
+  return {
+    locals: locals,
+    render: render
+  }
 }
 
 function main () {

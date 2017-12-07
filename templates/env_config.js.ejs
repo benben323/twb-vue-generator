@@ -1,0 +1,61 @@
+const isProd = process.env.NODE_ENV === 'product'
+const isRelease = process.env.NODE_ENV === 'stage'
+const isHotfix = process.env.NODE_ENV === 'stage_test2'
+const isDevelop = process.env.NODE_ENV === 'stage_test3'
+const isQA = process.env.NODE_ENV === 'qa'
+
+const isLocal = !process.env.NODE_ENV
+
+let baseUrl = '/'
+
+if (isRelease) {
+	baseUrl = '/<%- config.appname %>test/'
+}else if (isHotfix) {
+	baseUrl = '/<%- config.appname %>test2/'
+}else if (isDevelop) {
+	baseUrl = '/<%- config.appname %>test3/'
+}else if(isProd){
+	baseUrl = '/<%- config.appname %>/'
+}
+
+let apiUrl = 'http://tcflightfrontapi3.t.17usoft.com/frontservice/'
+if (isProd || isQA) {
+	apiUrl = 'http://tcflightfrontapi.17usoft.com/frontservice/'
+}else if (isRelease){
+	apiUrl = 'http://tcflightfrontapi.t.17usoft.com/frontservice/'
+}else if(isHotfix){
+	apiUrl = 'http://tcflightfrontapi2.t.17usoft.com/frontservice/'
+}else if(isDevelop){
+	apiUrl = 'http://tcflightfrontapi3.t.17usoft.com/frontservice/'
+}
+
+
+let sourceUrl = '/'
+if (isProd || isQA) {
+	sourceUrl = '//file.40017.cn/assets/<%- config.appname %>/'
+}else if(isRelease){
+	sourceUrl = '//file.40017.cn/assets/<%- config.appname %>test/'
+}else if(isHotfix){
+	sourceUrl = '//file.40017.cn/assets/<%- config.appname %>test2/'
+}else if(isDevelop){
+	sourceUrl = '/<%- config.appname %>test3/dist/'
+}
+
+console.log(`process.env.NODE_ENV = ${process.env.NODE_ENV}`)
+console.log(`baseUrl = ${baseUrl}`)
+console.log(`apiUrl = ${apiUrl}`)
+console.log(`sourceUrl = ${sourceUrl}`)
+
+const APPNAME = "<%- config.appname %>"
+
+exports.isProd = isProd
+exports.isRelease = isRelease
+exports.isHotfix = isHotfix
+exports.isDevelop = isDevelop
+exports.isQA = isQA
+exports.isLocal = isLocal
+exports.baseUrl = baseUrl
+exports.apiUrl = apiUrl
+exports.sourceUrl = sourceUrl
+exports.apiOrderList = apiOrderList
+exports.APPNAME = APPNAME

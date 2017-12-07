@@ -1,6 +1,6 @@
 {
   "name": "twb-vue-generator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "create project with vue template",
   "main": "bin/twb-vue-cli.js",
   "bin": {
@@ -30,6 +30,7 @@
   "homepage": "https://github.com/benben323/twb-vue-generator#readme",
   "dependencies": {
     "commander": "^2.12.2",
+    "ejs": "^2.5.7",
     "mkdirp": "^0.5.1",
     "sorted-object": "^2.0.1"
   }

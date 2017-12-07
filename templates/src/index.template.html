@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <link rel="stylesheet" href="https://file.40017.cn/assets/public/logo/css/32airlogo.css">
+</head>
+
+<body>
+<!--vue-ssr-outlet-->
+<script type="text/javascript">
+    //获取链接参数-暂时方案
+    function getQueryParams(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+    var _tcq = _tcq || [];
+	var _timediff = -1;
+    var initialState= window.__INITIAL_STATE__,_refId="",_userId=0,_trackPageview=0;
+    _refId = getQueryParams("RefId")||"";
+
+    if(initialState&&initialState.userInfo){
+        if(_refId==""){
+            _refId = initialState.userInfo.refid|| "36849990";
+        }
+        _userId = initialState.userInfo.mid|| 0;
+        _trackPageview = initialState.userInfo.openid + "||" || 0;
+	}
+	_refId = (_refId && _refId !="0") ? _refId : "36849990";
+	if (typeof _tcopentime != "undefined")
+	{ _timediff = new Date().getTime() - _tcopentime; }
+	_tcq.push(['_serialid', 0]);
+	_tcq.push(['_vrcode', '10003-2002-0']);
+	_tcq.push(['_refId', _refId]);
+	_tcq.push(['_userId', _userId]);
+	_tcq.push(['_openTime', _timediff]);
+	_tcq.push(['_trackPageview', _trackPageview]);
+	_tcq.push(['_resId', 0]); //资源id
+	_tcq.push(['_flag',false]);
+	/**
+	 * 埋点触发页面数据收集
+	 * @param  String pg    当前页面名称
+	 * @param  String orgpg 来源页面名称
+	 * @return {[type]}       [description]
+	 */
+	function pageTrack(pg, orgpg) {
+		if (typeof _tcTraObj == "undefined") {
+			var t = setTimeout("_tcTraObj._tcTrackPage('" + pg + "','" + orgpg + "');", 1000)
+		} else {
+			_tcTraObj._tcTrackPage(pg, orgpg);
+		}
+	}
+	/**
+	 * 事件跟踪方法
+	 * @param  String category  类别
+	 * @param  String action    操作
+	 * @param  String opt_label 标签
+	 * @param  String opt_value 值
+	 * @return {[type]}           [description]
+	 */
+	function eventTrack(category, action, opt_label, opt_value){
+		_tcTraObj._tcTrackEvent(category, action, opt_label, opt_value);
+	}
+
+	window.onload = function(){
+		var s2 = document.createElement('script')
+		s2.src= "//js.40017.cn/cn/min/??/touch/hb/p/hijack/hijack.2.0.3.js?v=201704011430"
+		s2.onload = function(){
+			//调用方式，放在页面引用的JS，或是页脚
+			fed_hijack.init({
+				whiteList:"tel:|chebada.com|weixin:|qq.com|sms:12306|ly.com|117go.com|40017.cn|17usoft.com|17u.com|17u.cn|cnzz.com|baidu.com|yiqiyou.com|upaiyun|fraudmetrix|360.cn|360.com|data:image|tctravel://|tctclient://|comp.umetrip.co|pic5.40017.cn|ooo.0o0.ooo|huize.com|tianan-life.com|docin.com|cntaiping.com|zhongan.com|wecare.sinosig.com|sjk.1bao.me|pingan.com|epicc.com.cn|95549.cn|unionlife.com.cn|property.pingan.com",//非必填，白名单大部分统计的是域名，还有少数根据tctravel://或 data:image进行匹配，将项目里用到的域名，用"|"分隔，拼成的字符串，例如"ly.com|17u.cn|17u.com|tctravel://|data:image"
+				//目前组件里白名单有这些 tel:|chebada.com|weixin:|qq.com|sms:12306|ly.com|117go.com|40017.cn|17usoft.com|17u.com|17u.cn|cnzz.com|baidu.com|yiqiyou.com|upaiyun|fraudmetrix|360.cn|360.com|data:image|tctravel://|tctclient://
+				//如果白名单有统计不全的，可以通过参数传递过来。
+				projectTag:"guoneijipiao",//必填，就是项目的tag值，例如：jingqu、dujia
+				pageName:"",//非必填，默认是取页面的title，如果项目传值，就取项目的，例如：首页，列表，详情
+				platform:"wechat",//非必填，默认根据ua进行区别，主要分四个场景touch/wechat/app/手q，如果项目特殊处理的话，优先取项目的 例如：touch\wechat\app\qq
+				removeError: true//非必填，bool类型，默认值为false,不会对dom元素进行任务操作，只是存储劫持数据。例如: ture/false（注：使用该参数为true可以移除被劫持的广告，在保证项目里所添加的白名单是足够全的情况，可以使用。如果白名单不全，可能误remove掉项目里本身的元素）
+			});
+		}
+		document.head.appendChild(s2);
+
+		var s3 = document.createElement('script')
+		s3.src = "//file.40017.cn/combo/assets/public/monitor??/femonitor.1.0.1.js?v=20170831"
+		document.head.appendChild(s3)
+	}
+</script>
+
+<script src="//vstlog.17usoft.com/vst.ashx"></script>
+<script src="//file.40017.cn/assets/wxshare/wxshare.js?v=201711071832"></script>
+<script src="//file.40017.cn/appresource/js/h5/component/ordercross.2.0.min.js?20171114"></script>
+<script src="http://map.qq.com/api/js?v=2.exp"></script>
+</body>
+</html>
