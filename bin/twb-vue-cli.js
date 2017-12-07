@@ -128,7 +128,7 @@ function createApplication (name, path) {
     })
 
     write(path + '/package.json', JSON.stringify(pkg, null, 2) + '\n')
-    write(path + '/apps.js', app.render())
+    write(path + '/apps.js', apps.render())
 
     if (program.git) {
       copyTemplate('gitignore', path + '/.gitignore')
