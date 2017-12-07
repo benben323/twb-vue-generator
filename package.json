@@ -1,0 +1,34 @@
+{
+  "name": "twb-vue-generator",
+  "version": "0.1.0",
+  "description": "create project with vue template",
+  "main": "bin/twb-vue-cli.js",
+  "bin": {
+    "twbvue": "./bin/twb-vue-cli.js"
+  },
+  "files": [
+    "LICENSE",
+    "bin/",
+    "templates/"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benben323/twb-vue-generator.git"
+  },
+  "keywords": [
+    "vue",
+    "template"
+  ],
+  "author": "benben323",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benben323/twb-vue-generator/issues"
+  },
+  "homepage": "https://github.com/benben323/twb-vue-generator#readme",
+  "dependencies": {
+    "commander": "^2.12.2"
+  }
+}
