@@ -1,6 +1,6 @@
 {
   "name": "twb-vue-generator",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "create project with vue template",
   "main": "bin/twb-vue-cli.js",
   "bin": {
