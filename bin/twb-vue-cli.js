@@ -17,13 +17,15 @@ var pkg = require('../package.json')
 
 var version = pkg.version
 
+var vueVersion = "v2"
+
 process.exit = exit
 
 program
   .name('twbvue')
   .version(version, '   --version')
   .usage('[options] [dir]')
-  .option('-v, --view <engine>', 'add view <engine> support (dust|ejs|jade) (defaults to jade)')
+  .option('-v, --vueversion <version>', 'select vue version <version>  (v2|v3) (defaults to v2)')
   .option('    --git', 'add .gitignore')
   .option('-f, --force', 'force on non-empty directory')
   .parse(process.argv)
@@ -79,7 +81,7 @@ function confirm (msg, callback) {
  */
 
 function copyTemplate (from, to) {
-  from = path.join(__dirname, '..', 'templates', from)
+  from = path.join(__dirname, '..', 'templates' , vueVersion , from)
   write(to, fs.readFileSync(from, 'utf-8'))
 }
 
@@ -105,6 +107,8 @@ function createApplication (name, path) {
 
     console.log()
   }
+
+  vueVersion = program.vueversion?program.vueversion : vueVersion
 
   var envConfig = loadTemplate('env_config.js')
 
@@ -379,7 +383,7 @@ function createAppName (pathName) {
  */
 
 function loadTemplate (name) {
-  var contents = fs.readFileSync(path.join(__dirname, '..', 'templates', (name + '.ejs')), 'utf-8')
+  var contents = fs.readFileSync(path.join(__dirname, '..', 'templates' , vueVersion, (name + '.ejs')), 'utf-8')
   var locals = Object.create(null)
 
   function render () {
